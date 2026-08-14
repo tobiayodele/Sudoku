@@ -4,7 +4,8 @@ public class SudokuValidator {
     public boolean isValid(int[][]board, int row, int column,  int guess){
         if (!isValidRow(board, row, guess)
                 || (!isValidColumn(board,column,guess))
-                || (!isValidBox(board, row, column, guess))){
+                || (!isValidBox(board, row, column, guess))
+                || (!isValidCell(board, row, column))){
             return false;
         }
         return true;
@@ -39,4 +40,10 @@ public class SudokuValidator {
         return true;
     }
 
+    private boolean isValidCell (int[][] board, int row, int column){
+        if(!(board[row][column] == 0)){
+            return false;
+        }
+        return true;
+    }
 }

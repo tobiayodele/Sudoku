@@ -48,4 +48,12 @@ public class BoardTest {
         board.setCell(8, 6, 3);
         assertTrue(validator.isValid(board.getBoard(), 4, 4, 3));
     }
+
+    @Test
+    public void testValidCell(){
+        // Not allowed to overwrite a filled cell, if different number should not get flagged by row, column or box.
+        SudokuBoard board = new SudokuBoard();
+        board.setCell(3,3,3);
+        assertFalse(validator.isValid(board.getBoard(),3,3, 9));
+    }
 }
