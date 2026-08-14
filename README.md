@@ -4,9 +4,9 @@ What Works:
   - Generates Empty 9x9 Grid
   - Can fill a cell with a value
   - Validity checks for box, column and row duplicates.
+  - Validity check for cell duplicates (14/08/26)
 
 Next changes:
-  - Validity check for cell duplicates
   - Completely generate a **unique** sudoku
       - Should be valid for box, column and row duplicate
       - Should result in a sudoku with only one possible solution
