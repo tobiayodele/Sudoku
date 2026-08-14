@@ -3,7 +3,7 @@ Basic Sudoku Generator.
 What Works:
   - Generates Empty 9x9 Grid
   - Can fill a cell with a value
-  - Validity checks for box, column and row duplicates.
+  - Validity checks for box, column and row duplicates
   - Validity check for cell duplicates (14/08/26)
   - Completely generates a **unique** completed sudoku (14/08/26)
       - Validity checks for row and column duplicates
