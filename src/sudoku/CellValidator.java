@@ -1,7 +1,7 @@
 package sudoku;
 
-public class SudokuValidator {
-    public boolean isValid(int[][]board, int row, int column,  int guess){
+public class CellValidator {
+    public boolean isValidCell(int[][]board, int row, int column,  int guess){
         if (!isValidRow(board, row, guess)
                 || (!isValidColumn(board,column,guess))
                 || (!isValidBox(board, row, column, guess))
@@ -10,6 +10,7 @@ public class SudokuValidator {
         }
         return true;
     }
+
     private boolean isValidRow(int[][]board, int row, int guess){
         for (int i= 0; i < 9 ; i++){
             if (board[row][i] == guess){

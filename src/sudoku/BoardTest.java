@@ -6,32 +6,32 @@ import static org.junit.Assert.*;
 
 public class BoardTest {
 
-    SudokuValidator validator = new SudokuValidator();
+    CellValidator validator = new CellValidator();
 
     @Test
     public void testInvalidRow() {
         SudokuBoard board = new SudokuBoard();
         board.setCell(3, 3, 3);
-        assertFalse(validator.isValid(board.getBoard(), 3, 5, 3));
+        assertFalse(validator.isValidCell(board.getBoard(), 3, 5, 3));
     }
     @Test
     public void testValidRow() {
         SudokuBoard board = new SudokuBoard();
         board.setCell(3, 3, 3);
-        assertTrue(validator.isValid(board.getBoard(), 3, 5, 5));
+        assertTrue(validator.isValidCell(board.getBoard(), 3, 5, 5));
     }
 
     @Test
     public void testInvalidColumn() {
         SudokuBoard board = new SudokuBoard();
         board.setCell(3, 3, 3);
-        assertFalse(validator.isValid(board.getBoard(), 5, 3, 3));
+        assertFalse(validator.isValidCell(board.getBoard(), 5, 3, 3));
     }
     @Test
     public void testValidColumn() {
         SudokuBoard board = new SudokuBoard();
         board.setCell(3, 3, 3);
-        assertTrue(validator.isValid(board.getBoard(), 5, 3, 5));
+        assertTrue(validator.isValidCell(board.getBoard(), 5, 3, 5));
     }
 
     @Test
@@ -39,14 +39,14 @@ public class BoardTest {
         // coordinates (6,8) has a 3 and (7,7) is in the same box so a new 3 cannot go in.
         SudokuBoard board = new SudokuBoard();
         board.setCell(8, 6, 3);
-        assertFalse(validator.isValid(board.getBoard(),7 , 7, 3));
+        assertFalse(validator.isValidCell(board.getBoard(),7 , 7, 3));
     }
     @Test
     public void testValidBox() {
         // coordinates (6,8) has a three but (4,4) is not in the same box so it is valid based just this box.
         SudokuBoard board = new SudokuBoard();
         board.setCell(8, 6, 3);
-        assertTrue(validator.isValid(board.getBoard(), 4, 4, 3));
+        assertTrue(validator.isValidCell(board.getBoard(), 4, 4, 3));
     }
 
     @Test
@@ -54,6 +54,15 @@ public class BoardTest {
         // Not allowed to overwrite a filled cell, if different number should not get flagged by row, column or box.
         SudokuBoard board = new SudokuBoard();
         board.setCell(3,3,3);
-        assertFalse(validator.isValid(board.getBoard(),3,3, 9));
+        assertFalse(validator.isValidCell(board.getBoard(),3,3, 9));
     }
+
+    @Test
+    public void testValidBoardRow(){
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        BoardValidator validator = new BoardValidator();
+        validator.isValidBoard(board.getBoard());
+    }
+
 }
