@@ -5,8 +5,9 @@ What Works:
   - Can fill a cell with a value
   - Validity checks for box, column and row duplicates.
   - Validity check for cell duplicates (14/08/26)
-  - Completely generates a **unique** sudoku (14/08/26)
+  - Completely generates a **unique** completed sudoku (14/08/26)
       - Validity checks for row and column duplicates
+      - Validity check for no empty cell
 
 Next changes:
   - Validity checks for box duplicates
