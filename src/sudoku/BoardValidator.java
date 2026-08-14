@@ -17,6 +17,13 @@ public class BoardValidator {
             }
         }
 
+        for (int row = 0; row <9; row += 3){
+            for (int column =0; column < 9; column += 3){
+                if(!isValidBox(board, row, column)){
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -32,7 +39,7 @@ public class BoardValidator {
     }
 
     private boolean isValidRow(int[] row){
-        HashSet<Integer> seen = new HashSet<Integer>();
+        HashSet<Integer> seen = new HashSet<>();
         for (int i : row){
             if (seen.contains(i)){
                 return false;
@@ -43,7 +50,7 @@ public class BoardValidator {
     }
 
     private boolean isValidColumn(int[][] board, int  column){
-        HashSet<Integer> seen = new HashSet<Integer>();
+        HashSet<Integer> seen = new HashSet<>();
         for (int i=0; i < 9; i++){
             int value = board[i][column];
             if (seen.contains(value)){
@@ -54,6 +61,19 @@ public class BoardValidator {
         return true;
     }
 
+    private boolean isValidBox(int[][] board, int row , int column){
+        HashSet<Integer> seen = new HashSet<>();
+        for (int i =0; i <3 ; i ++){
+            for (int j=0; j<3; j++){
+                int value = board[row+i][column+j];
+                if(seen.contains(value)){
+                    return false;
+                }
+                seen.add(value);
+            }
+        }
+        return true;
+    }
 
 
 }

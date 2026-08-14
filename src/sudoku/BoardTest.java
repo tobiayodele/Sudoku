@@ -10,6 +10,7 @@ public class BoardTest {
 
     @Test
     public void testInvalidRow() {
+        // try to place duplicate 3 in the 3rd row
         SudokuBoard board = new SudokuBoard();
         board.setCell(3, 3, 3);
         assertFalse(validator.isValidCell(board.getBoard(), 3, 5, 3));
@@ -17,6 +18,7 @@ public class BoardTest {
     @Test
     public void testValidRow() {
         SudokuBoard board = new SudokuBoard();
+        // no violation as there is no duplicate
         board.setCell(3, 3, 3);
         assertTrue(validator.isValidCell(board.getBoard(), 3, 5, 5));
     }
@@ -58,11 +60,78 @@ public class BoardTest {
     }
 
     @Test
-    public void testValidBoardRow(){
-        SudokuGenerator generator = new SudokuGenerator();
-        SudokuBoard board = generator.generate();
+    public void testValidBoard() {
         BoardValidator validator = new BoardValidator();
-        validator.isValidBoard(board.getBoard());
+        int[][] validBoard = {
+                {5, 3, 4, 6, 7, 8, 9, 1, 2},
+                {6, 7, 2, 1, 9, 5, 3, 4, 8},
+                {1, 9, 8, 3, 4, 2, 5, 6, 7},
+                {8, 5, 9, 7, 6, 1, 4, 2, 3},
+                {4, 2, 6, 8, 5, 3, 7, 9, 1},
+                {7, 1, 3, 9, 2, 4, 8, 5, 6},
+                {9, 6, 1, 5, 3, 7, 2, 8, 4},
+                {2, 8, 7, 4, 1, 9, 6, 3, 5},
+                {3, 4, 5, 2, 8, 6, 1, 7, 9}
+        };
+
+        assertTrue(validator.isValidBoard(validBoard));
     }
 
+    @Test
+    public void testNotCompleteBoard() {
+        BoardValidator validator = new BoardValidator();
+        //board has empty spaces at row 4, column 3 and row 7 column 5 so not in the same row, column or box
+        // so should fail solely because it has 0s / empty spots
+        int[][] NotCompleteBoard = {
+                {5, 3, 4, 6, 7, 8, 9, 1, 2},
+                {6, 7, 2, 1, 9, 5, 3, 4, 8},
+                {1, 9, 8, 3, 4, 2, 5, 6, 7},
+                {8, 5, 0, 7, 6, 1, 4, 2, 3},
+                {4, 2, 6, 8, 5, 0, 7, 9, 1},
+                {7, 1, 3, 9, 2, 4, 8, 5, 6},
+                {9, 6, 1, 5, 0, 7, 2, 8, 4},
+                {2, 8, 7, 4, 1, 9, 6, 3, 5},
+                {3, 4, 5, 2, 8, 6, 1, 7, 9}
+        };
+
+        assertFalse(validator.isValidBoard(NotCompleteBoard));
+    }
+
+    @Test
+    public void testInvalidBoardRow() {
+        BoardValidator validator = new BoardValidator();
+        int[][] invalidBoardRow = {
+                // row one has duplicate 5
+                {5, 5, 4, 6, 7, 8, 9, 1, 2},
+                {6, 7, 2, 1, 9, 5, 3, 4, 8},
+                {1, 9, 8, 3, 4, 2, 5, 6, 7},
+                {8, 5, 9, 7, 6, 1, 4, 2, 3},
+                {4, 2, 6, 8, 5, 3, 7, 9, 1},
+                {7, 1, 3, 9, 2, 4, 8, 5, 6},
+                {9, 6, 1, 5, 3, 7, 2, 8, 4},
+                {2, 8, 7, 4, 1, 9, 6, 3, 5},
+                {3, 4, 5, 2, 8, 6, 1, 7, 9}
+        };
+
+        assertFalse(validator.isValidBoard(invalidBoardRow));
+    }
+
+    @Test
+    public void testInvalidBoardColumn() {
+        BoardValidator validator = new BoardValidator();
+        int[][] testInvalidBoardColumn = {
+                //column 1 has duplicate 5
+                {5, 3, 4, 6, 7, 8, 9, 1, 2},
+                {6, 7, 2, 1, 9, 5, 3, 4, 8},
+                {1, 9, 8, 3, 4, 2, 5, 6, 7},
+                {8, 5, 9, 7, 6, 1, 4, 2, 3},
+                {5, 2, 6, 8, 5, 3, 7, 9, 1},
+                {7, 1, 3, 9, 2, 4, 8, 5, 6},
+                {9, 6, 1, 5, 3, 7, 2, 8, 4},
+                {2, 8, 7, 4, 1, 9, 6, 3, 5},
+                {3, 4, 5, 2, 8, 6, 1, 7, 9}
+        };
+
+        assertFalse(validator.isValidBoard(testInvalidBoardColumn));
+    }
 }
