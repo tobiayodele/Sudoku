@@ -134,6 +134,7 @@ public class BoardTest {
 
         assertFalse(validator.isValidBoard(testInvalidBoardColumn));
     }
+
     @Test
     public void correctNumberOfRemovedCells(){
         SudokuGenerator generator = new SudokuGenerator();
@@ -151,25 +152,61 @@ public class BoardTest {
         assertEquals(20, count);
     }
 
-        @Test
-        public void noOtherCellsAffected(){
-            SudokuGenerator generator = new SudokuGenerator();
-            SudokuBoard board = generator.generate();
-            SudokuBoard removedCellsBoard = generator.removeCells(board, 20);
-            boolean flag = true;
-            for (int i = 0; i < 9; i++){
-                for (int j=0; j<9; j++){
-                    if (removedCellsBoard.getBoard()[i][j]==0){
-                        continue;
-                    }
-                    else{
-                        if(!(removedCellsBoard.getBoard()[i][j] == board.getBoard()[i][j])){
-                            flag = false;
-                        }
+    @Test
+    public void noOtherCellsAffected(){
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        SudokuBoard removedCellsBoard = generator.removeCells(board, 20);
+        boolean flag = true;
+        for (int i = 0; i < 9; i++){
+            for (int j=0; j<9; j++){
+                if (removedCellsBoard.getBoard()[i][j]==0){
+                    continue;
+                }
+                else{
+                    if(!(removedCellsBoard.getBoard()[i][j] == board.getBoard()[i][j])){
+                        flag = false;
                     }
                 }
             }
-            assertTrue(flag);
-
         }
+        assertTrue(flag);
+    }
+
+    @Test
+    public void completedBoardCounter(){
+    //a completed board is done so should only have one solution
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        CellValidator validator = new CellValidator();
+        assertEquals(1, generator.solutionCounter(board, validator));
+    }
+
+    @Test
+    public void onePossibleSolution(){
+        // a board with only one cell empty only has one solution
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        board.setCell(3,3,0);
+        CellValidator validator = new CellValidator();
+        assertEquals(1, generator.solutionCounter(board, validator));
+    }
+
+    @Test
+    public void multiplePossibleSolutions(){
+        // A puzzle needs at least 17 filled in cells to have a unique solution
+        // (McGuire, Tugemann & Civario, 2014)
+        // 81-16 = 65 hence taking out 65 cells results in a guaranteed puzzle
+        // that does not have a unique solution.
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        board = generator.removeCells(board, 65);
+        CellValidator validator = new CellValidator();
+        assertEquals(2, generator.solutionCounter(board,validator) );
+    }
+
+
+
+
+
 }

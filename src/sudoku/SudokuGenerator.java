@@ -60,4 +60,28 @@ public class SudokuGenerator {
         }
         return puzzle;
     }
+
+     int solutionCounter(SudokuBoard puzzle, CellValidator validator){
+        for (int row =0; row <9 ; row ++){
+            for (int column = 0; column<9; column ++){
+                if (puzzle.isEmpty(row,column)){
+                    int solutions = 0;
+                    for (int guess =1; guess <= 9; guess ++){
+                        if (validator.isValidCell(puzzle.getBoard(), row ,column ,guess)){
+                            puzzle.setCell(row,column,guess);
+                            solutions += solutionCounter(puzzle,validator);
+                            puzzle .setCell(row,column,0); // reset temp guess
+
+                            if (solutions >= 2){ // actual figure does not matter, as long as its greater than 1 it's not unique.
+                                return 2;
+                            }
+                        }
+                    }
+                    return solutions;
+                }
+            }
+        }
+        //by this point we have reached a complete valid sudoku
+        return 1;
+    }
 }
