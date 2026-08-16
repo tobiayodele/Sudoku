@@ -1,24 +1,22 @@
 Basic Sudoku Generator.
 
-What Works:
-  - Generates Empty 9x9 Grid
-  - Can fill a cell with a value
-  - Validity checks for box, column and row duplicates
-  - Validity check for cell duplicates (14/08/26)
-  - Completely generates a **unique** completed sudoku (14/08/26)
-      - Validity checks for row and column duplicates
-      - Validity check for no empty cell
+Experiment:
 
-Next changes:
-  - Validity checks for box duplicates
-  - Removal of a certain number of boxes to give a game one can actually play
-      - Should result in a sudoku with only one possible solution
+As the number of randomly removed cells increases, how does this affect the probability of generating a unique sudoku?
 
-Long Term Aims:
-  - Player Interaction
-  - Difficulty Levels (Changes the number of starting cells)
-  - Tips such as number of remaining numbers, for example if there is one 8 filled in, there are eight 8s to be filled in
-  - Sudoku Solver
-  - Hints
-  - Allowing for x number of incorrect placements
-  - GUI interface
+Progress:
+  - Completed random cell removal for user chosen number of cells.
+      - Unit Tests to show the right number of cells were deleted and the right cells where deleted.
+   
+Todo
+  - Function to check whether the puzzle is unique
+  - Run to check generation time, probability of generating a unique puzzle
+  - Graphs
+
+EBI
+  - Perhaps compare to an algorithm based on recursion and backtracking rather than randomisation
+      - Noting computational cost like number of recursive calls
+
+
+
+
