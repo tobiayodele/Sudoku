@@ -38,4 +38,12 @@ public class SudokuBoard {
         return board;
     }
 
+    public void setBoard(int [][] board){
+        this.board = new int[9][9];
+        for(int row =0; row <9; row ++){
+            for (int column = 0; column < 9; column ++){
+                setCell(row,column,board[row][column]);
+            }
+        }
+    }
 }
