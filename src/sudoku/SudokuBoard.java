@@ -35,7 +35,7 @@ public class SudokuBoard {
     }
 
     public int[][] getBoard(){
-        return board;
+        return this.board;
     }
 
     public void setBoard(int [][] board){

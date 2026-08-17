@@ -2,10 +2,26 @@ package sudoku;
 
 public class Main {
     public static void main(String[] args){
-        SudokuBoard board = new SudokuBoard();
         CellValidator validator = new CellValidator();
         SudokuGenerator generate = new SudokuGenerator();
-        generate.generate();
+        SudokuBoard board = generate.generate();
+        boolean flag = false;
+        SudokuBoard puzzle = new SudokuBoard();
+        int count = 0;
+        while (!flag){
+            puzzle.setBoard(board.getBoard());
+            count ++;
+            puzzle = generate.removeCells(puzzle,50);
+            if(generate.solutionCounter(puzzle,validator)==1){
+                flag = true;
+            }
+
+            puzzle.print();;
+            System.out.println("");
+        }
+
+        puzzle.print();
+        System.out.println(count);
 
     }
 
