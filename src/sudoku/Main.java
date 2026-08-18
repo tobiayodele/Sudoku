@@ -11,13 +11,11 @@ public class Main {
         while (!flag){
             puzzle.setBoard(board.getBoard());
             count ++;
-            puzzle = generate.removeCells(puzzle,50);
+            puzzle = generate.randomRemoveCells(puzzle,50);
             if(generate.solutionCounter(puzzle,validator)==1){
                 flag = true;
             }
 
-            puzzle.print();;
-            System.out.println("");
         }
 
         puzzle.print();

@@ -48,7 +48,7 @@ public class SudokuGenerator {
         return true;
     }
 
-     SudokuBoard removeCells(SudokuBoard board, int numberOfMissingCells){
+     SudokuBoard randomRemoveCells(SudokuBoard board, int numberOfMissingCells){
         SudokuBoard puzzle = new SudokuBoard();
         puzzle.setBoard(board.getBoard());
         List<Integer> shuffle = new ArrayList<>(this.cells);
@@ -61,6 +61,46 @@ public class SudokuGenerator {
         return puzzle;
     }
 
+    SudokuBoard recursiveRemoveCells (SudokuBoard board, int numberOfMissingCells) {
+        SudokuBoard puzzle = new SudokuBoard();
+        puzzle.setBoard(board.getBoard());
+        List<Integer> shuffle = new ArrayList<>(this.cells);
+        Collections.shuffle(shuffle);
+
+        if (numberOfMissingCells == 0) {
+            return puzzle;
+        }
+        else {
+            for (int i =0; i < 81; i ++) {
+                int cell = shuffle.get(i);
+                int row = cell / 9;
+                int column = cell % 9;
+
+                if (puzzle.getBoard()[row][column] == 0){
+                    continue;
+                }
+                int value = puzzle.getBoard()[row][column];
+                puzzle.setCell(row, column, 0);
+                int solution = solutionCounter(puzzle, validator);
+
+                if (solution >= 2) {
+                    puzzle.setCell(row, column, value);
+
+                }
+                else {
+                    SudokuBoard result = recursiveRemoveCells(puzzle, numberOfMissingCells - 1);
+                    if (result == null ){
+                        puzzle.setCell(row, column, value);
+                    }
+                    else{
+                        return result;
+                    }
+                }
+            }
+            return null;
+        }
+
+    }
      int solutionCounter(SudokuBoard puzzle, CellValidator validator){
         for (int row =0; row <9 ; row ++){
             for (int column = 0; column<9; column ++){

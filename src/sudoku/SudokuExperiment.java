@@ -14,7 +14,7 @@ public class SudokuExperiment {
         long generationTime = generationEnd - generationStart;
 
         long removalStart = System.nanoTime();
-        SudokuBoard puzzle = generator.removeCells(board,numberOfMissingCells);
+        SudokuBoard puzzle = generator.randomRemoveCells(board,numberOfMissingCells);
         long removalEnd = System.nanoTime();
         long removalTime = removalEnd- removalStart;
 

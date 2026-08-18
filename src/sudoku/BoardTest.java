@@ -136,10 +136,10 @@ public class BoardTest {
     }
 
     @Test
-    public void correctNumberOfRemovedCells(){
+    public void correctNumberOfRandomRemovedCells(){
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
-        SudokuBoard removedCellsBoard = generator.removeCells(board, 20);
+        SudokuBoard removedCellsBoard = generator.randomRemoveCells(board, 20);
         // check only 20 cells have been removed
         int count = 0;
         for(int [] row : removedCellsBoard.getBoard()){
@@ -153,10 +153,10 @@ public class BoardTest {
     }
 
     @Test
-    public void noOtherCellsAffected(){
+    public void noOtherRandomCellsAffected(){
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
-        SudokuBoard removedCellsBoard = generator.removeCells(board, 20);
+        SudokuBoard removedCellsBoard = generator.randomRemoveCells(board, 20);
         boolean flag = true;
         for (int i = 0; i < 9; i++){
             for (int j=0; j<9; j++){
@@ -171,6 +171,52 @@ public class BoardTest {
             }
         }
         assertTrue(flag);
+    }
+
+    @Test
+    public void correctNumberOfRecursiveRemovedCells(){
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        SudokuBoard removedCellsBoard = generator.recursiveRemoveCells(board, 50);
+        // check only 50 cells have been removed
+        int count = 0;
+        for(int [] row : removedCellsBoard.getBoard()){
+            for (int cell : row){
+                if(cell == 0){
+                    count ++;
+                }
+            }
+        }
+        assertEquals(50, count);
+    }
+
+    @Test
+    public void noOtherRecursiveCellsAffected(){
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        SudokuBoard removedCellsBoard = generator.recursiveRemoveCells(board, 20);
+        boolean flag = true;
+        for (int i = 0; i < 9; i++){
+            for (int j=0; j<9; j++){
+                if (removedCellsBoard.getBoard()[i][j]==0){
+                    continue;
+                }
+                else{
+                    if(!(removedCellsBoard.getBoard()[i][j] == board.getBoard()[i][j])){
+                        flag = false;
+                    }
+                }
+            }
+        }
+        assertTrue(flag);
+    }
+
+    @Test
+    public void recursiveRemovalUniqueSolution(){
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        SudokuBoard removedCellsBoard = generator.recursiveRemoveCells(board, 50);
+        assertEquals(1, generator.solutionCounter(removedCellsBoard, validator));
     }
 
     @Test
@@ -200,13 +246,9 @@ public class BoardTest {
         // that does not have a unique solution.
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
-        board = generator.removeCells(board, 65);
+        board = generator.randomRemoveCells(board, 65);
         CellValidator validator = new CellValidator();
         assertEquals(2, generator.solutionCounter(board,validator) );
     }
-
-
-
-
 
 }
