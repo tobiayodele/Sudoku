@@ -177,7 +177,7 @@ public class BoardTest {
     public void correctNumberOfRecursiveRemovedCells(){
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
-        SudokuBoard removedCellsBoard = generator.recursiveRemoveCells(board, 50);
+        SudokuBoard removedCellsBoard = generator.iterativeRemoveCells(board, 50);
         // check only 50 cells have been removed
         int count = 0;
         for(int [] row : removedCellsBoard.getBoard()){
@@ -194,7 +194,7 @@ public class BoardTest {
     public void noOtherRecursiveCellsAffected(){
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
-        SudokuBoard removedCellsBoard = generator.recursiveRemoveCells(board, 20);
+        SudokuBoard removedCellsBoard = generator.iterativeRemoveCells(board, 20);
         boolean flag = true;
         for (int i = 0; i < 9; i++){
             for (int j=0; j<9; j++){
@@ -208,6 +208,8 @@ public class BoardTest {
                 }
             }
         }
+        board.print();
+        removedCellsBoard.print();
         assertTrue(flag);
     }
 
@@ -215,7 +217,7 @@ public class BoardTest {
     public void recursiveRemovalUniqueSolution(){
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
-        SudokuBoard removedCellsBoard = generator.recursiveRemoveCells(board, 50);
+        SudokuBoard removedCellsBoard = generator.iterativeRemoveCells(board, 50);
         assertEquals(1, generator.solutionCounter(removedCellsBoard, validator));
     }
 

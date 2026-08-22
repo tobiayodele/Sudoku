@@ -3,7 +3,7 @@ package sudoku;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SudokuExperiment {
+public class RandomSudokuExperiment {
     private String runTrial(int numberOfMissingCells, int trial){
         long trialStart = System.nanoTime();
 
@@ -33,14 +33,14 @@ public class SudokuExperiment {
 
     static void main(String[] args) throws  IOException{
         long experimentStart = System.nanoTime();
-        SudokuExperiment experiment = new SudokuExperiment();
+        RandomSudokuExperiment experiment = new RandomSudokuExperiment();
         FileWriter writer = new FileWriter("sudoku_experiment_1000.csv");
         writer.write("missing_cells,trial,solution_count,generation_time_ns,removal_time_ns,solution_time_ns,total_time_ns\n");
         for (int i =0; i < 65; i++){
             for (int trial =1; trial <= 1000; trial ++){
                 writer.write(experiment.runTrial(i,trial));
 
-            }
+             }
             System.out.println("Number: " + i + " trial completed.");
         }
         writer.close();
