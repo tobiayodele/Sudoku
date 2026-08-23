@@ -1,12 +1,11 @@
 package sudoku;
 
+import java.util.HashMap;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args){
-        SudokuBoard board = new SudokuBoard();
-        CellValidator validator = new CellValidator();
-        SudokuGenerator generate = new SudokuGenerator();
-        generate.generate();
-
+    public static void main(String[] args) {
+        SudokuGame game = new SudokuGame();
+        game.startGame();
     }
-
 }
