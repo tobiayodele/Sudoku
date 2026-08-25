@@ -62,10 +62,8 @@ public class SudokuGame {
             return false;
         }  if (!puzzle.isEmpty(row -1 , column -1)) { // account for 0-indexed array.
             return false;
-        }  if (guess < 1 || guess > 9) {
-            return false;
         }
-        return true;
+        return guess >= 1 && guess <= 9;
     }
 
     private int getInt(){

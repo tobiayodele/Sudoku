@@ -53,6 +53,7 @@ public class SudokuBoard {
     }
 
     public void setBoard(int [][] board){
+        // construct a new board and fill in the values from the old board.
         this.board = new int[9][9];
         for(int row =0; row <9; row ++){
             for (int column = 0; column < 9; column ++){

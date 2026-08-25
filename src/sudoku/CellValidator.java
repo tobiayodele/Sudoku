@@ -2,13 +2,10 @@ package sudoku;
 
 public class CellValidator {
     public boolean isValidCell(int[][]board, int row, int column,  int guess){
-        if (!isValidRow(board, row, guess)
-                || (!isValidColumn(board,column,guess))
-                || (!isValidBox(board, row, column, guess))
-                || (!isValidCell(board, row, column))){
-            return false;
-        }
-        return true;
+        return isValidRow(board, row, guess)
+                && (isValidColumn(board, column, guess))
+                && (isValidBox(board, row, column, guess))
+                && (isValidCell(board, row, column));
     }
 
     private boolean isValidRow(int[][]board, int row, int guess){
@@ -29,6 +26,7 @@ public class CellValidator {
         return true;
     }
     private boolean isValidBox(int[][]board, int row, int column, int guess){
+        // finds top left cell in a box
         int boxStartRow = (row /3) * 3;
         int boxStartColumn =(column /3) * 3;
         for (int i = 0; i <=2; i ++){
@@ -42,9 +40,6 @@ public class CellValidator {
     }
 
     private boolean isValidCell (int[][] board, int row, int column){
-        if(!(board[row][column] == 0)){
-            return false;
-        }
-        return true;
+        return board[row][column] == 0;
     }
 }
