@@ -5,14 +5,14 @@ What Works:
   - Can fill a cell with a value
   - Validity checks for box, column and row duplicates
   - Validity check for cell duplicates (14/08/26)
-  - Completely generates a **unique** completed sudoku (14/08/26)
+  - Completely generates a **unique** completed main.java.sudoku (14/08/26)
       - Validity checks for row and column duplicates
       - Validity check for no empty cell
   - Validity checks for box duplicates
   - Removal of a certain number of boxes to give a game one can actually play
-      - Should result in a sudoku with only one possible solution
+      - Should result in a main.java.sudoku with only one possible solution
       - Done using iterative method.
-  - Player is able to place their guesses and complete a game of sudoku
+  - Player is able to place their guesses and complete a game of main.java.sudoku
   - Difficulty levels based solely on number of missing cells
   - User has 3 lives
 
