@@ -55,7 +55,7 @@ public class SudokuGame {
     }
 
 
-    private boolean validateGuess(int column, int row, int guess, SudokuBoard puzzle) {
+    boolean validateGuess(int row, int column, int guess, SudokuBoard puzzle) {
         if (column < 1 || column > 9) {
             return false;
         }  if (row < 1 || row > 9) {
@@ -96,7 +96,7 @@ public class SudokuGame {
                 row = getInt();
                 System.out.println("Enter guess");
                 guess = getInt();
-                flag = validateGuess(column, row, guess, puzzle);
+                flag = validateGuess(row, column, guess, puzzle);
                 if (!flag) {
                     System.out.println("Invalid Input");
                 }
