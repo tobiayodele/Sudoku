@@ -9,7 +9,8 @@ import org.junit.runners.Suite;
         CellValidatorTests.class,
         SolutionCounterTests.class,
         ValidateGuessTests.class,
-        BoardValidatorTests.class
+        BoardValidatorTests.class,
+        RemovalTests.class
 })
 
 
