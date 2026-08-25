@@ -3,6 +3,7 @@ package sudoku;
 import java.util.HashSet;
 
 public class BoardValidator {
+    // test class honestly why is this even here? pls delete tobi
     public boolean isValidBoard(int[][]board){
         if (!isFullSudoku(board)){
             return false;
@@ -39,6 +40,7 @@ public class BoardValidator {
     }
 
     private boolean isValidRow(int[] row){
+        // add each number in the row to a hashset and if there is a duplicate return false
         HashSet<Integer> seen = new HashSet<>();
         for (int i : row){
             if (seen.contains(i)){
@@ -63,6 +65,7 @@ public class BoardValidator {
 
     private boolean isValidBox(int[][] board, int row , int column){
         HashSet<Integer> seen = new HashSet<>();
+        // given the top left cell in a box check for no duplicates
         for (int i =0; i <3 ; i ++){
             for (int j=0; j<3; j++){
                 int value = board[row+i][column+j];

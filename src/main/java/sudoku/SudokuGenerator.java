@@ -167,7 +167,7 @@ public class SudokuGenerator {
                 }
             }
         }
-        //by this point we have reached a complete valid sudoku
+        //by this point we have reached a complete valid main.java.sudoku
         return 1;
     }
 }
