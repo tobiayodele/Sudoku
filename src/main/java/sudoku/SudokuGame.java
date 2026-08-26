@@ -9,6 +9,7 @@ public class SudokuGame {
     private final SudokuGenerator generator = new SudokuGenerator();
     private final Scanner scanner = new Scanner(System.in);
 
+
     public SudokuGame() {
         // difficulty levels based on number of missing cells
         difficulties.put("easy", 40);
@@ -26,19 +27,16 @@ public class SudokuGame {
     }
 
     private int difficultySelect() {
-        boolean difficultyflag = false;
-        String difficulty = "";
-        while (!difficultyflag) {
+        String difficulty;
+        while (true) {
             System.out.println("Enter difficulty easy/medium/hard");
             difficulty = scanner.nextLine();
             if (difficulty.equals("easy") || difficulty.equals("medium") || difficulty.equals("hard")) {
-                difficultyflag = true;
+                return (difficulties.get(difficulty));
             } else {
                 System.out.println("Invalid Input");
             }
         }
-
-        return difficulties.get(difficulty);
     }
 
 
@@ -66,13 +64,14 @@ public class SudokuGame {
         return guess >= 1 && guess <= 9;
     }
 
-    private int getInt(){
+    private int getInt(String field){
         while (true){
             try {
                return scanner.nextInt();
             }
             catch (InputMismatchException e){
                 System.out.println("Invalid Input");
+                System.out.println("Enter " + field);
                 scanner.nextLine();
             }
         }
@@ -91,14 +90,14 @@ public class SudokuGame {
             puzzle.print();
             while (!flag) {
                 System.out.println("Enter column");
-                column = getInt();
+                column = getInt("column");
                 System.out.println("Enter row");
-                row = getInt();
+                row = getInt("row");
                 System.out.println("Enter guess");
-                guess = getInt();
+                guess = getInt("guess");
                 flag = validateGuess(row, column, guess, puzzle);
                 if (!flag) {
-                    System.out.println("Invalid Input");
+                    System.out.println("Invalid Input! Try Again.");
                 }
             }
             //by here you have a valid guess
