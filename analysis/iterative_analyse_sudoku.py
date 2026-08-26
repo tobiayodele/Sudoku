@@ -2,7 +2,7 @@ import  pandas as pd
 import matplotlib.pyplot as plt
 import statistics
 
-data = pd.read_csv("data/recursive_sudoku_experimentMk2_1000.csv")
+data = pd.read_csv("data/Iterative/iterative_sudoku_experiment_1000.csv")
 
 missing_cells =[]
 mean_times = []
@@ -50,7 +50,7 @@ plt.plot(missing_cells,percentage_chance_of_success, marker= "o")
 plt.xlabel("Number of Missing Cells")
 plt.ylabel("Percentage with Unique Solution(%)")
 plt.title("Effect of Missing Cells on the Probability of a Successful Solution")
-plt.savefig("percentage_relationship_recursiveMk2.png")
+plt.savefig("percentage_relationship_iterative.png")
 
 plt.figure()
 plt.plot(missing_cells,mean_times, marker = "o")
@@ -59,8 +59,8 @@ plt.xlabel("Number of Mssing Cells")
 plt.ylabel("Total Runtime(ms)")
 plt.yscale("log")
 
-plt.title("Relationship between Missing Cells and Runtiem")
-plt.savefig("runtime_relationship_recursivemk2.png")
+plt.title("Relationship between Missing Cells and Runtime")
+plt.savefig("runtime_relationship_iterative.png")
 
 
 data = {
@@ -71,7 +71,7 @@ data = {
 }
 
 table = pd.DataFrame(data)
-table.to_excel("sudoku_results_recursivemk2.xlsx", index=False)
+table.to_excel("sudoku_results_iterative.xlsx", index=False)
 
 table["Missing Cells"]= table["Missing Cells"].astype(str)
 table["Percentage for Success"] = table["Percentage for Success"].round(2)
@@ -93,4 +93,4 @@ table_plot.auto_set_font_size(False)
 table_plot.set_fontsize(10)
 table_plot.scale(1.2, 1.5)
 
-plt.savefig("sudoku_results_recursivemk2.png", bbox_inches="tight", dpi=300)
+plt.savefig("sudoku_results_iterative.png", bbox_inches="tight", dpi=300)
