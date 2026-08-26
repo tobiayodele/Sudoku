@@ -30,10 +30,12 @@ public class RecursiveSudokuExperiment {
     static void main(String[] args) throws IOException {
         long experimentStart = System.nanoTime();
         RecursiveSudokuExperiment experiment = new RecursiveSudokuExperiment();
-        FileWriter writer = new FileWriter("recursive_sudoku_experiment_1.csv");
+        FileWriter writer = new FileWriter("recursive_sudoku_experiment_1000.csv");
         writer.write("missing_cells,trial,generation_time_ns,removal_time_ns,total_time_ns\n");
-        for (int i =0; i < 65; i++){
-            for (int trial =1; trial <= 1; trial ++){
+        //becomes computationally infeasible beyond this point due to recursive blowup
+        //range capped between 0-55 to keep it bounded.
+        for (int i =0; i < 56; i++){
+            for (int trial =1; trial <= 1000; trial ++){ // change for variable number of trials
                 writer.write(experiment.runTrial(i,trial));
 
             }
