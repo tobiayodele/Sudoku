@@ -59,7 +59,7 @@ plt.xlabel("Number of Mssing Cells")
 plt.ylabel("Total Runtime(ms)")
 plt.yscale("log")
 
-plt.title("Relationship between Missing Cells and Runtiem")
+plt.title("Relationship between Missing Cells and Runtime")
 plt.savefig("runtime_relationship.png")
 
 
