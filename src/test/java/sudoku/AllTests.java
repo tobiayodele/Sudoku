@@ -10,7 +10,8 @@ import org.junit.runners.Suite;
         SolutionCounterTests.class,
         ValidateGuessTests.class,
         BoardValidatorTests.class,
-        RemovalTests.class
+        RemovalTests.class,
+        SudokuGameTests.class
 })
 
 

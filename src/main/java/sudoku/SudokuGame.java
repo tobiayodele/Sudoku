@@ -40,7 +40,7 @@ public class SudokuGame {
     }
 
 
-    private SudokuBoard getPuzzle(int numberOfMissingCells, SudokuBoard board) {
+     SudokuBoard getPuzzle(int numberOfMissingCells, SudokuBoard board) {
         SudokuBoard puzzle;
         while (true) { // generate new puzzles until a valid puzzle is generated
             puzzle = generator.iterativeRemoveCells(board, numberOfMissingCells);
