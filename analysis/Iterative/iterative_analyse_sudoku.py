@@ -21,10 +21,10 @@ for number_of_missing_cells, group in data.groupby("missing_cells"):
         total += solution_time
         count += 1
 
-        if minimum == None or solution_time < minimum : 
+        if minimum is None or solution_time < minimum :
             minimum = solution_time 
 
-        if maximum == None or solution_time > maximum :
+        if maximum is None or solution_time > maximum :
             maximum = solution_time
 
     mean = (total / count) /1e6 
@@ -33,8 +33,8 @@ for number_of_missing_cells, group in data.groupby("missing_cells"):
 
 
     success_count = 0
-    for successfull_count in group["success"]:
-        if successfull_count == 1:
+    for successful_count in group["success"]:
+        if successful_count == 1:
             success_count += 1
 
     percentage = (success_count / len(group) ) * 100
@@ -55,7 +55,7 @@ plt.savefig("percentage_relationship_iterative.png")
 plt.figure()
 plt.plot(missing_cells,mean_times, marker = "o")
 plt.plot(missing_cells, median_times, marker = "o")
-plt.xlabel("Number of Mssing Cells")
+plt.xlabel("Number of Missing Cells")
 plt.ylabel("Total Runtime(ms)")
 plt.yscale("log")
 
