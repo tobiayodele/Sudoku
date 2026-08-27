@@ -8,6 +8,7 @@ random_data = pd.read_csv("data/Random/random_sudoku_experiment_1000.csv")
 
 
 def calculate_single_mean_times(data):
+    ## calculate mean time by dividing the total by the number of values in the group
     missing_cells = []
     mean_times = []
     for number_of_missing_cells, group in data.groupby("missing_cells"):
@@ -57,8 +58,8 @@ def calculate_total_runtime(single_mean_times,chance_of_success):
     total_runtimes = []
 
     for i in range (len(single_mean_times)):
-        ## can not divide by 0 so infinity to show it would take infinitely long to generate
-        ## a valid solution
+        ## can not divide by 0, so set to infinity to show it would take infinitely 
+        ## long to generate valid solution
         if chance_of_success[i] == 0:
             total_runtime = float("inf")
         else:
@@ -79,15 +80,7 @@ random_chance_of_success = calculate_random_success_chance(random_data)
 iterative_total_mean_times = calculate_total_runtime(iterative_mean_times,iterative_chance_of_success)
 random_total_mean_times= calculate_total_runtime(random_mean_times,random_chance_of_success)
 
-
-    
-
-
-
-
-
-
-
+## plot the graph to compare runtimes of all three methods
 plt.figure()
 plt.plot(iterative_missing_cells,iterative_total_mean_times, marker = "o", label = "Iterative")
 plt.plot(recursive_missing_cells, recursive_mean_times, marker = "o", label = "Recursive")
@@ -99,3 +92,66 @@ plt.title("Comparison of runtimes between different methods")
 plt.legend()
 plt.savefig("runtime_comparison.png")
 
+##not recorded due to recursion explosion so represent with inf
+for i  in range(56,65):
+    recursive_mean_times.append(float("inf"))
+
+
+data = {
+    "Missing Cells" : iterative_missing_cells,
+    "Iterative Runtime(ms)" : iterative_total_mean_times,
+    "Recursive Runtime(ms)" : recursive_mean_times,
+    "Random Runtime(ms)" : random_total_mean_times
+}
+
+table = pd.DataFrame(data)
+table.to_excel("mean_runtime_comparison.xlsx", index=False)
+
+## round results 
+table["Missing Cells"]= table["Missing Cells"].astype(str)
+table["Iterative Runtime(ms)"] = table["Iterative Runtime(ms)"].round(2)
+table["Recursive Runtime(ms)"] = table["Recursive Runtime(ms)"].round(3)
+table["Random Runtime(ms)"] = table["Random Runtime(ms)"].round(3)
+
+fig, ax = plt.subplots(figsize=(10, 12))
+
+ax.axis("off")
+
+table_plot = ax.table(
+    cellText=table.values,
+    colLabels=table.columns,
+    loc="center",
+    cellLoc="center"
+)
+
+columns = ["Iterative Runtime(ms)", "Recursive Runtime(ms)", "Random Runtime(ms)"]
+
+## highlight fastest runtime
+for i, row in table.iterrows():
+    values = row[columns].astype(float)
+    min_column = values.idxmin()
+
+    ## ignore when all values are inf, no fastest time here
+    if values[min_column] != float("inf"):
+        min_column_id = table.columns.get_loc(min_column)
+        min_cell = table_plot[i + 1, min_column_id]  
+        min_cell.set_facecolor("#d1e7dd")
+        min_cell.set_text_props(color="#0f5132", weight="bold")
+    
+
+
+
+missing_cells_column = table["Missing Cells"].astype(int)
+missing_cells_column_id = table.columns.get_loc("Missing Cells")
+
+for i in range(len(missing_cells_column)):
+    value = missing_cells_column[i]
+    if 40 <= value and value <= 60:
+        cell = table_plot[i + 1, missing_cells_column_id] ## increment by 1 to avoid the header
+        cell.set_text_props(color="#842029", weight="bold")
+
+table_plot.auto_set_font_size(False)
+table_plot.set_fontsize(10)
+table_plot.scale(1.2, 1.5)
+
+plt.savefig("mean_runtime_comparison_table.png", bbox_inches="tight", dpi=300)
