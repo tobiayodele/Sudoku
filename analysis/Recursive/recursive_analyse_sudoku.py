@@ -9,8 +9,6 @@ mean_times = []
 median_times = []
 
 
-
-
 for number_of_missing_cells, group in data.groupby("missing_cells"):
     total = 0
     count = 0 
@@ -21,16 +19,15 @@ for number_of_missing_cells, group in data.groupby("missing_cells"):
         total += solution_time
         count += 1
 
-        if minimum == None or solution_time < minimum : 
+        if minimum is None or solution_time < minimum :
             minimum = solution_time 
 
-        if maximum == None or solution_time > maximum :
+        if maximum is None or solution_time > maximum :
             maximum = solution_time
 
     mean = (total / count) /1e6 
     median = statistics.median(group["total_time_ns"]) /1e6
     print (number_of_missing_cells, minimum, maximum, mean)
-
 
 
     missing_cells.append(number_of_missing_cells)
@@ -42,12 +39,12 @@ for number_of_missing_cells, group in data.groupby("missing_cells"):
 plt.figure()
 plt.plot(missing_cells,mean_times, marker = "o")
 plt.plot(missing_cells, median_times, marker = "o")
-plt.xlabel("Number of Mssing Cells")
+plt.xlabel("Number of Missing Cells")
 plt.ylabel("Total Runtime(ms)")
 plt.yscale("log")
 
 plt.title("Relationship between Missing Cells and Runtime")
-plt.savefig("runtime_relationship.png")
+plt.savefig("runtime_relationship_recursive.png")
 
 
 data = {
@@ -57,7 +54,7 @@ data = {
 }
 
 table = pd.DataFrame(data)
-table.to_excel("sudoku_results.xlsx", index=False)
+table.to_excel("sudoku_results_recursive.xlsx", index=False)
 
 table["Missing Cells"]= table["Missing Cells"].astype(str)
 table["Median Runtime(ms)"] = table["Median Runtime(ms)"].round(3)
@@ -78,4 +75,4 @@ table_plot.auto_set_font_size(False)
 table_plot.set_fontsize(10)
 table_plot.scale(1.2, 1.5)
 
-plt.savefig("sudoku_results.png", bbox_inches="tight", dpi=300)
+plt.savefig("sudoku_results_recursive.png", bbox_inches="tight", dpi=300)
