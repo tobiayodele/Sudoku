@@ -2,7 +2,7 @@ import  pandas as pd
 import matplotlib.pyplot as plt
 import statistics
 
-data = pd.read_csv("data/sudoku_experiment_1000.csv")
+data = pd.read_csv("data/Random/random_sudoku_experiment_1000.csv")
 
 missing_cells =[]
 mean_times = []
