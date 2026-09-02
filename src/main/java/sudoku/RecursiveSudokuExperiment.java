@@ -27,7 +27,7 @@ public class RecursiveSudokuExperiment {
                 "," + removalTime + "," +  totalTime +  "\n");
     }
 
-    static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         long experimentStart = System.nanoTime();
         RecursiveSudokuExperiment experiment = new RecursiveSudokuExperiment();
         FileWriter writer = new FileWriter("recursive_sudoku_experiment_1000.csv");
