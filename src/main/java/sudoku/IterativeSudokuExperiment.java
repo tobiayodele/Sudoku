@@ -32,7 +32,7 @@ public class IterativeSudokuExperiment {
                 "," + removalTime + "," +  totalTime +  "\n");
     }
 
-    static void main(String[] args) throws IOException {
+    public static void main() throws IOException {
         long experimentStart = System.nanoTime();
         IterativeSudokuExperiment experiment = new IterativeSudokuExperiment();
         FileWriter writer = new FileWriter("recursive_sudoku_experimentMk2_1000.csv");

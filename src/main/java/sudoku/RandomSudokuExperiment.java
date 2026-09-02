@@ -33,7 +33,7 @@ public class RandomSudokuExperiment {
                 "," + removalTime + "," + solutionTime + "," + totalTime +  "\n");
     }
 
-    static void main(String[] args) throws  IOException{
+    public static void main() throws  IOException{
         long experimentStart = System.nanoTime();
         RandomSudokuExperiment experiment = new RandomSudokuExperiment();
         FileWriter writer = new FileWriter("sudoku_experiment_1000.csv");
