@@ -98,7 +98,7 @@ git checkout experiments
 ```
 Install requirements.
 ```bash
-pip install pandas matplotlib openyxl
+pip install pandas matplotlib openpyxl
 ```
 Run the ``` runner.bat ``` script.
 
@@ -115,7 +115,7 @@ git checkout experiments
 ```
 Install requirements.
 ```bash
-pip3 install pandas matplotlib openyxl
+pip3 install pandas matplotlib openpyxl
 
 ```
 Make sure the runner and maven build wrapper is executable on first execution and then run it.
