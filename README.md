@@ -140,7 +140,7 @@ The runner will then run the respective python scripts and generate processed gr
 
 ## License
 
-This project is licensed under the MIT License.
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Author
 **Tobi Ayodele**
