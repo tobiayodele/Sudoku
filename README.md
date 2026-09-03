@@ -6,6 +6,7 @@ Java-based Sudoku experiment to compare the efficiency in generating a **unique*
 
 - [Experiment](#experiment)
 - [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
@@ -20,9 +21,18 @@ The cell removal methods compared are:
 - Greedy/Iterative - Pass through all cells and only remove cells if they maintain a unique solution.
 - Recursive - Cells are removed if they maintain a unique solution and will backtrack if a unique solution cannot be found.
 
-For each method Sudoku puzzles are generated the experiment generates a puzzle and tests measures its runtime and records uniqueness.
+How it works.
+1. Generate a complete 9x9 Sudoku board using recursive backtracking.
+2. Remove cells with one of the three methods above
+3. Check for uniqueness
+   - Random checked for uniqueness at end of generation
+   - Greedy/Iterative checked if puzzle is return as any puzzle returned will be unique
+   - Recursive always returns unique puzzle
+4. Record trial time and uniqueness to CSV
+5. Analyse the CSVs using Python scripts to find and compare the estimated cost to generate a unique Sudoku puzzle for each removal method.
 
-The report for this experiment can be found at ``` /docts/report_cell_removal_methods.pdf ```
+The report and 1000 trial data and graphs for this experiment can be found at ``` /docts/ ```
+
 # Project Structure
 ```text
 Sudoku/
@@ -58,7 +68,12 @@ Sudoku/
 ├── pom.xml                               # Maven config
 └── README.md   
 ```
-
+# Prerequisites
+- Java 26 or later
+- Python 3
+  - `pandas`
+  - `matplotlib`
+  - `openpyxl` (required for writing `.xlsx` output)
 # Installation
 
 Windows:
@@ -70,13 +85,20 @@ git clone https://github.com/tobiayodele/Sudoku.git
 cd Sudoku
 git checkout experiments
 ```
+Install requirements.
+```bash
+pip install pandas
+pip install matplotlib
+pip install openyxl
+```
+Run the ``` runner.bat ``` script.
 
 ## Usage
-Run the ``` runner.bat ``` file.
-Enter the number of trials for each cell and then the runner with automatically run the experiments as well as the analysis scripts.
+Run the runner script for your operating system.
+Enter the number of trials for each cell and then the runner will automatically run the experiments as well as the analysis scripts.
 
 Raw results can be found in ```data/```.
-Processed results can be found at ```analysis/*/results```.
+Processed graphs and results tables can be found at ```analysis/*/results```.
 
 ## License
 
