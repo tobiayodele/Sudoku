@@ -6,7 +6,7 @@ import os
 SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIRECTORY, "..", ".."))
 
-data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Iterative", "iterative_sudoku_experiment_1000.csv"))
+data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Iterative", "iterative_sudoku_experiment.csv"))
 
 missing_cells =[]
 mean_times = []
@@ -54,7 +54,7 @@ plt.plot(missing_cells,percentage_chance_of_success, marker= "o")
 plt.xlabel("Number of Missing Cells")
 plt.ylabel("Percentage with Unique Solution(%)")
 plt.title("Effect of Missing Cells on the Probability of a Successful Solution")
-plt.savefig("percentage_relationship_iterative.png")
+plt.savefig("analysis/Iterative/results/percentage_relationship_iterative.png")
 
 plt.figure()
 plt.plot(missing_cells,mean_times, marker = "o")
@@ -64,7 +64,7 @@ plt.ylabel("Total Runtime(ms)")
 plt.yscale("log")
 
 plt.title("Relationship between Missing Cells and Runtime")
-plt.savefig("runtime_relationship_iterative.png")
+plt.savefig("analysis/Iterative/results/runtime_relationship_iterative.png")
 
 
 data = {
@@ -75,7 +75,7 @@ data = {
 }
 
 table = pd.DataFrame(data)
-table.to_excel("sudoku_results_iterative.xlsx", index=False)
+table.to_excel("analysis/Iterative/results/sudoku_results_iterative.xlsx", index=False)
 
 table["Missing Cells"]= table["Missing Cells"].astype(str)
 table["Percentage for Success"] = table["Percentage for Success"].round(2)
@@ -97,4 +97,4 @@ table_plot.auto_set_font_size(False)
 table_plot.set_fontsize(10)
 table_plot.scale(1.2, 1.5)
 
-plt.savefig("sudoku_results_iterative.png", bbox_inches="tight", dpi=300)
+plt.savefig("analysis/Iterative/results/sudoku_results_iterative.png", bbox_inches="tight", dpi=300)

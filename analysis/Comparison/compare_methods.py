@@ -6,9 +6,9 @@ import os
 SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIRECTORY, "..", ".."))
 
-iterative_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Iterative", "iterative_sudoku_experiment_1000.csv"))
-recursive_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Recursive", "recursive_sudoku_experiment_1000.csv"))
-random_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Random", "random_sudoku_experiment_1000.csv"))
+iterative_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Iterative", "iterative_sudoku_experiment.csv"))
+recursive_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Recursive", "recursive_sudoku_experiment.csv"))
+random_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Random", "random_sudoku_experiment.csv"))
 
 
 def calculate_single_mean_times(data):
@@ -94,7 +94,7 @@ plt.ylabel("Total Runtime(ms)")
 plt.yscale("log")
 plt.title("Comparison of runtimes between different methods")
 plt.legend()
-plt.savefig("runtime_comparison.png")
+plt.savefig("analysis/Comparison/results/runtime_comparison.png")
 
 ##not recorded due to recursion explosion so represent with inf
 for i  in range(56,65):
@@ -109,7 +109,7 @@ data = {
 }
 
 table = pd.DataFrame(data)
-table.to_excel("mean_runtime_comparison.xlsx", index=False)
+table.to_excel("analysis/Comparison/results/mean_runtime_comparison.xlsx", index=False)
 
 ## round results 
 table["Missing Cells"]= table["Missing Cells"].astype(str)
@@ -158,4 +158,4 @@ table_plot.auto_set_font_size(False)
 table_plot.set_fontsize(10)
 table_plot.scale(1.2, 1.5)
 
-plt.savefig("mean_runtime_comparison_table.png", bbox_inches="tight", dpi=300)
+plt.savefig("analysis/Comparison/results/mean_runtime_comparison_table.png", bbox_inches="tight", dpi=300)
