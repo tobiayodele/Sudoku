@@ -1,8 +1,11 @@
 import  pandas as pd
 import matplotlib.pyplot as plt
 import statistics
+import os 
+SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIRECTORY, "..", ".."))
 
-data = pd.read_csv("data/Random/random_sudoku_experiment_1000.csv")
+data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Random", "random_sudoku_experiment_1000.csv"))
 
 missing_cells =[]
 mean_times = []

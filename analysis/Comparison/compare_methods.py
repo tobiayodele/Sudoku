@@ -1,10 +1,14 @@
 import  pandas as pd
 import matplotlib.pyplot as plt
 
+import os
 
-iterative_data = pd.read_csv("data/Iterative/iterative_sudoku_experiment_1000.csv")
-recursive_data = pd.read_csv("data/Recursive/recursive_sudoku_experiment_1000.csv")
-random_data = pd.read_csv("data/Random/random_sudoku_experiment_1000.csv")
+SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIRECTORY, "..", ".."))
+
+iterative_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Iterative", "iterative_sudoku_experiment_1000.csv"))
+recursive_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Recursive", "recursive_sudoku_experiment_1000.csv"))
+random_data = pd.read_csv(os.path.join(PROJECT_ROOT, "data", "Random", "random_sudoku_experiment_1000.csv"))
 
 
 def calculate_single_mean_times(data):
