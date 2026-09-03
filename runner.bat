@@ -1,28 +1,16 @@
 @echo off
 setlocal
 
-REM Runs all three Sudoku experiments, then their analysis scripts.
-REM Must be run from the project root (where this script lives),
-REM since every path (data\, analysis\) is resolved relative to it.
-
 cd /d "%~dp0"
 
 echo --- Building jar ---
-call mvnw.cmd -q -DskipTests package
+call mvnw.cmd package
 if errorlevel 1 goto :error
 
 set JAR=target\sudoku-1.0-SNAPSHOT.jar
 
-echo --- Running Iterative experiment ---
-java -cp "%JAR%" sudoku.IterativeSudokuExperiment
-if errorlevel 1 goto :error
-
-echo --- Running Random experiment ---
-java -cp "%JAR%" sudoku.RandomSudokuExperiment
-if errorlevel 1 goto :error
-
-echo --- Running Recursive experiment ---
-java -cp "%JAR%" sudoku.RecursiveSudokuExperiment
+echo --- Running Experiments ---
+java -cp "%JAR%" sudoku.Main
 if errorlevel 1 goto :error
 
 echo --- Running Iterative analysis ---
