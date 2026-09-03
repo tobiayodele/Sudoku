@@ -34,15 +34,15 @@ public class RandomSudokuExperiment {
                 "," + removalTime + "," + solutionTime + "," + totalTime +  "\n");
     }
 
-    public static void main(String[] args) throws  IOException{
+    public static void runExperiment(int numberOfTrials) throws  IOException{
         long experimentStart = System.nanoTime();
         RandomSudokuExperiment experiment = new RandomSudokuExperiment();
-        Path outputPath = Path.of("data", "Random", "random_sudoku_experiment_1000.csv");
+        Path outputPath = Path.of("data", "Random", "random_sudoku_experiment.csv");
         Files.createDirectories(outputPath.getParent());
         FileWriter writer = new FileWriter(outputPath.toFile());
         writer.write("missing_cells,trial,solution_count,generation_time_ns,removal_time_ns,solution_time_ns,total_time_ns\n");
         for (int i =0; i < 65; i++){
-            for (int trial =1; trial <= 1000; trial ++){
+            for (int trial =1; trial <= numberOfTrials; trial ++){
                 writer.write(experiment.runTrial(i,trial));
 
              }
