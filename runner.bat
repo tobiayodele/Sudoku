@@ -30,8 +30,10 @@ python analysis\Comparison\compare_methods.py
 if errorlevel 1 goto :error
 
 echo --- Success! --
+pause
 goto :eof
 
 :error
 echo Something failed - stopping.
+pause
 exit /b 1
