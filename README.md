@@ -2,18 +2,24 @@
 
 Java-based Sudoku experiment to compare the efficiency in generating a **unique** Sudoku puzzle.
 
+---
+
 ## Contents
 
 - [Experiment](#experiment)
 - [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+  - [Windows](#windows)
+  - [Linux/MacOS](#linuxmacos)
 - [Usage](#usage)
 - [License](#license)
 - [Author](#author)
 
+---
+
 ## Experiment
-Research Question:
+### Research Question:
 >As the number of  removed cells increases, how does this affect the probability of generating a unique sudoku?
 
 The cell removal methods compared are:
@@ -21,7 +27,7 @@ The cell removal methods compared are:
 - Greedy/Iterative - Pass through all cells and only remove cells if they maintain a unique solution.
 - Recursive - Cells are removed if they maintain a unique solution and will backtrack if a unique solution cannot be found.
 
-How it works.
+### How it works.
 1. Generate a complete 9x9 Sudoku board using recursive backtracking.
 2. Remove cells with one of the three methods above
 3. Check for uniqueness
@@ -32,6 +38,8 @@ How it works.
 5. Analyse the CSVs using Python scripts to find and compare the estimated cost to generate a unique Sudoku puzzle for each removal method.
 
 The report and 1000 trial data and graphs for this experiment can be found at ``` /docts/ ```
+
+---
 
 # Project Structure
 ```text
@@ -68,6 +76,9 @@ Sudoku/
 ├── pom.xml                               # Maven config
 └── README.md   
 ```
+
+---
+
 # Prerequisites
 - Java 26 or later
 - Python 3
@@ -76,7 +87,24 @@ Sudoku/
   - `openpyxl` (required for writing `.xlsx` output)
 # Installation
 
-Windows:
+### Windows:
+
+Clone this repository and checkout the ```experiments``` branch.
+
+```bash
+git clone https://github.com/tobiayodele/Sudoku.git
+cd Sudoku
+git checkout experiments
+```
+Install requirements.
+```bash
+pip install pandas matplotlib openyxl
+```
+Run the ``` runner.bat ``` script.
+
+---
+
+### Linux/MacOS:
 
 Clone this repository and checkout the experiments branch.
 
@@ -87,26 +115,36 @@ git checkout experiments
 ```
 Install requirements.
 ```bash
-pip install pandas
-pip install matplotlib
-pip install openyxl
+pip3 install pandas matplotlib openyxl
+
 ```
-Run the ``` runner.bat ``` script.
+Make sure the runner and maven build wrapper is executable on first execution and then run it.
+```bash
+chmod +x runner.sh mvnw
+./runner.sh
+```
+
+---
 
 ## Usage
 Run the runner script for your operating system.
-Enter the number of trials for each cell and then the runner will automatically run the experiments as well as the analysis scripts.
+Enter the number of trials for each number of missing cells (default is 1000) and then the runner will automatically run the experiments as well as the analysis scripts.
 
-Raw results can be found in ```data/```.
-Processed graphs and results tables can be found at ```analysis/*/results```.
+Note 1000 trials can take a LONG time so you may wish to initially run a lower number of trials.
+
+The runner will initially run the experiments and generate raw results as CSVs which can can be found in ```data/```.
+
+The runner will then run the respective python scripts and generate processed graphs and results tables which can be found at ```analysis/*/results```.
+
+---
 
 ## License
 
 This project is licensed under the MIT License.
 
 ## Author
-Tobi Ayodele
-github.com/tobiayodele
+**Tobi Ayodele**
+[github.com/tobiayodele](https://github.com/tobiayodele)
 
 
 
