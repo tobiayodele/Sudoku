@@ -4,6 +4,10 @@ package sudoku;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+
 public class IterativeSudokuExperiment {
     private String runTrial(int numberOfMissingCells, int trial){
         long trialStart = System.nanoTime();
@@ -35,7 +39,9 @@ public class IterativeSudokuExperiment {
     public static void main(String[] args) throws IOException {
         long experimentStart = System.nanoTime();
         IterativeSudokuExperiment experiment = new IterativeSudokuExperiment();
-        FileWriter writer = new FileWriter("recursive_sudoku_experimentMk2_1000.csv");
+        Path outputPath = Path.of("data", "Iterative", "iterative_sudoku_experiment_1000.csv");
+        Files.createDirectories(outputPath.getParent());
+        FileWriter writer = new FileWriter(outputPath.toFile());
         writer.write("missing_cells,trial,success,generation_time_ns,removal_time_ns,total_time_ns\n");
         for (int i =0; i < 65; i++){
             for (int trial =1; trial <= 1000; trial ++){
