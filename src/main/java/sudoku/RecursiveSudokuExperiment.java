@@ -29,6 +29,8 @@ public class RecursiveSudokuExperiment {
     }
 
     public static void runExperiment(int numberOfTrials) throws IOException {
+        int completedTrials =0;
+        int totalTrials = 56 * numberOfTrials;
         long experimentStart = System.nanoTime();
         RecursiveSudokuExperiment experiment = new RecursiveSudokuExperiment();
         Path outputPath = Path.of("data", "Recursive", "recursive_sudoku_experiment.csv");
@@ -40,15 +42,17 @@ public class RecursiveSudokuExperiment {
         for (int i =0; i < 56; i++){
             for (int trial =1; trial <= numberOfTrials; trial ++){ // change for variable number of trials
                 writer.write(experiment.runTrial(i,trial));
-
+                completedTrials++;
+                System.out.print("\rCompleted trial number "+(completedTrials)+ " / " +totalTrials );
+                System.out.flush(); // sometimes looks stuck so flush
             }
-            System.out.println("Number: " + i + " trial completed.");
         }
         writer.close();
         long experimentEnd = System.nanoTime();
         long experimentTIme = experimentEnd - experimentStart;
         double experimentTimeSeconds = experimentTIme / 1_000_000_000.0;
-        System.out.println(experimentTimeSeconds + " Seconds");
+        System.out.println();
+        System.out.println("Recursive experiment took " + experimentTimeSeconds + " Seconds");
     }
 }
 

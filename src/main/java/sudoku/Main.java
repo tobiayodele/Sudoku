@@ -28,18 +28,18 @@ public class Main {
 
         System.out.println("How many trials per number of missing cells? (Press Enter for default = 1000: ");
         int numberOfTrials = getInt();
-        System.out.println("Running experiments using " + numberOfTrials + " number of trials.");
 
+        System.out.println("Running experiments using " + numberOfTrials + " number of trials.");
+        System.out.println("This may take a long time and may look stuck (especially at >500 trials) - grab a coffee.");
         System.out.println("--- Running Iterative experiment ---");
         IterativeSudokuExperiment.runExperiment(numberOfTrials);
-
+        System.out.println("Success!");
         System.out.println("--- Running Random experiment ---");
         RandomSudokuExperiment.runExperiment(numberOfTrials);
-
+        System.out.println("Success!");
         System.out.println("--- Running Recursive experiment ---");
         RecursiveSudokuExperiment.runExperiment(numberOfTrials);
-
-        System.out.println("All experiments complete.");
+        System.out.println("All experiments complete!");
 
 
     }

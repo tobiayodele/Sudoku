@@ -35,6 +35,8 @@ public class RandomSudokuExperiment {
     }
 
     public static void runExperiment(int numberOfTrials) throws  IOException{
+        int completedTrials =0;
+        int totalTrials = 65 * numberOfTrials;
         long experimentStart = System.nanoTime();
         RandomSudokuExperiment experiment = new RandomSudokuExperiment();
         Path outputPath = Path.of("data", "Random", "random_sudoku_experiment.csv");
@@ -44,15 +46,17 @@ public class RandomSudokuExperiment {
         for (int i =0; i < 65; i++){
             for (int trial =1; trial <= numberOfTrials; trial ++){
                 writer.write(experiment.runTrial(i,trial));
-
+                completedTrials++;
+                System.out.print("\rCompleted trial number "+(completedTrials)+ " / " +totalTrials );
+                System.out.flush(); // sometimes looks stuck so flush
              }
-            System.out.println("Number: " + i + " trial completed.");
         }
         writer.close();
         long experimentEnd = System.nanoTime();
         long experimentTIme = experimentEnd - experimentStart;
         double experimentTimeSeconds = experimentTIme / 1_000_000_000.0;
-        System.out.println(experimentTimeSeconds + " Seconds");
+        System.out.println();
+        System.out.println("Random experiment took " + experimentTimeSeconds + " Seconds");
     }
 
 }

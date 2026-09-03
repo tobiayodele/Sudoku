@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-
 public class IterativeSudokuExperiment {
     private String runTrial(int numberOfMissingCells, int trial){
         long trialStart = System.nanoTime();
@@ -37,24 +36,30 @@ public class IterativeSudokuExperiment {
     }
 
     public static void runExperiment(int numberOfTrials) throws IOException {
+
         long experimentStart = System.nanoTime();
         IterativeSudokuExperiment experiment = new IterativeSudokuExperiment();
         Path outputPath = Path.of("data", "Iterative", "iterative_sudoku_experiment.csv");
         Files.createDirectories(outputPath.getParent());
         FileWriter writer = new FileWriter(outputPath.toFile());
         writer.write("missing_cells,trial,success,generation_time_ns,removal_time_ns,total_time_ns\n");
+        int completedTrials =0;
+        int totalTrials = 65 * numberOfTrials;
         for (int i =0; i < 65; i++){
             for (int trial =1; trial <= numberOfTrials; trial ++){
                 writer.write(experiment.runTrial(i,trial));
-
+                completedTrials++;
+                System.out.print("\rCompleted trial number "+(completedTrials)+ " / " +totalTrials );
+                System.out.flush(); // sometimes looks stuck so flush
             }
-            System.out.println("Number: " + i + " trial completed.");
+
         }
         writer.close();
         long experimentEnd = System.nanoTime();
         long experimentTIme = experimentEnd - experimentStart;
         double experimentTimeSeconds = experimentTIme / 1_000_000_000.0;
-        System.out.println(experimentTimeSeconds + " Seconds");
+        System.out.println();
+        System.out.println("Iterative experiment took " + experimentTimeSeconds + " Seconds");
     }
 }
 
