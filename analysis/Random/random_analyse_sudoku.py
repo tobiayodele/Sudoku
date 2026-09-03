@@ -32,7 +32,7 @@ for number_of_missing_cells, group in data.groupby("missing_cells"):
 
     mean = (total / count) /1e6 
     median = statistics.median(group["total_time_ns"]) /1e6
-    print (number_of_missing_cells, minimum, maximum, mean)
+
 
 
     unique_count = 0
@@ -41,7 +41,7 @@ for number_of_missing_cells, group in data.groupby("missing_cells"):
             unique_count += 1
 
     percentage = (unique_count / len(group) ) * 100
-    print(number_of_missing_cells, unique_count)
+
 
     missing_cells.append(number_of_missing_cells)
     mean_times.append(mean)
