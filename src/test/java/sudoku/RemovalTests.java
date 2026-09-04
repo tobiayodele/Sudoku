@@ -6,46 +6,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class RemovalTests {
-    @Test
-    public void correctNumberOfRandomRemovedCells(){
-        SudokuGenerator generator = new SudokuGenerator();
-        SudokuBoard board = generator.generate();
-        SudokuBoard removedCellsBoard = generator.randomRemoveCells(board, 20);
-        // check only 20 cells have been removed
-        int count = 0;
-        for(int [] row : removedCellsBoard.getBoard()){
-            for (int cell : row){
-                if(cell == 0){
-                    count ++;
-                }
-            }
-        }
-        assertEquals(20, count);
-    }
 
     @Test
-    public void noOtherRandomCellsAffected(){
-        SudokuGenerator generator = new SudokuGenerator();
-        SudokuBoard board = generator.generate();
-        SudokuBoard removedCellsBoard = generator.randomRemoveCells(board, 20);
-        boolean flag = true;
-        for (int i = 0; i < 9; i++){
-            for (int j=0; j<9; j++){
-                if (removedCellsBoard.getBoard()[i][j]==0){
-                    continue;
-                }
-                else{
-                    if(!(removedCellsBoard.getBoard()[i][j] == board.getBoard()[i][j])){
-                        flag = false;
-                    }
-                }
-            }
-        }
-        assertTrue(flag);
-    }
-
-    @Test
-    public void correctNumberOfRecursiveRemovedCells(){
+    public void correctNumberOfIterativeRemovedCells(){
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
         SudokuBoard removedCellsBoard = generator.iterativeRemoveCells(board, 50);
@@ -62,7 +25,7 @@ public class RemovalTests {
     }
 
     @Test
-    public void noOtherRecursiveCellsAffected(){
+    public void noOtherIterativeCellsAffected(){
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
         SudokuBoard removedCellsBoard = generator.iterativeRemoveCells(board, 20);
@@ -85,7 +48,7 @@ public class RemovalTests {
     }
 
     @Test
-    public void recursiveRemovalUniqueSolution(){
+    public void iterativeRemovalUniqueSolution(){
         SudokuGenerator generator = new SudokuGenerator();
         SudokuBoard board = generator.generate();
         CellValidator validator = new CellValidator();

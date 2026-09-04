@@ -53,7 +53,7 @@ public class CellValidatorTests {
     }
 
     @Test
-    public void testValidCell(){
+    public void testInvalidCell(){
         // Not allowed to overwrite a filled cell, if different number should not get flagged by row, column or box.
         SudokuBoard board = new SudokuBoard();
         board.setCell(3,3,3);
