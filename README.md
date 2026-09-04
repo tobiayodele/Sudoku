@@ -1,6 +1,6 @@
 # Sudoku Cell Removal Methods Experiment
 
-Java-based Sudoku experiment to compare the efficiency in generating a **unique** Sudoku puzzle.
+Java-based Sudoku experiment to compare the efficiency of different cell removal methods in generating a **unique** Sudoku puzzle.
 
 ---
 
@@ -20,7 +20,7 @@ Java-based Sudoku experiment to compare the efficiency in generating a **unique*
 
 ## Experiment
 ### Research Question:
->As the number of  removed cells increases, how does this affect the probability of generating a unique sudoku?
+>As the number of removed cells increases, how does this affect the probability of generating a unique sudoku for different cell removal methods?
 
 The cell removal methods compared are:
 - Random - Randomly remove cells until the desired number of missing cells.
