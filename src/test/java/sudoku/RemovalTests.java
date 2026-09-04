@@ -42,8 +42,6 @@ public class RemovalTests {
                 }
             }
         }
-        board.print();
-        removedCellsBoard.print();
         assertTrue(flag);
     }
 
