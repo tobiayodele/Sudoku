@@ -48,62 +48,6 @@ public class SudokuGenerator {
         return true;
     }
 
-     SudokuBoard randomRemoveCells(SudokuBoard board, int numberOfMissingCells){
-        // randomise every cell and empty the first x cells given by numberOfMissingCells
-        SudokuBoard puzzle = new SudokuBoard();
-        puzzle.setBoard(board.getBoard());
-        List<Integer> shuffle = new ArrayList<>(this.cells);
-        Collections.shuffle(shuffle);
-
-        for (int i = 0; i < numberOfMissingCells; i++){
-            int value = shuffle.get(i);
-            puzzle.setCell(value/9,value%9, 0);
-        }
-        return puzzle;
-    }
-
-    SudokuBoard recursiveRemoveCells (SudokuBoard board, int numberOfMissingCells) {
-        //recursive backtracking method - removes a selected cell and check whether there's still only one solution
-        // otherwise reset cell and backtrack and try another cell until you reach numberOfMissingCells
-        SudokuBoard puzzle = new SudokuBoard();
-        puzzle.setBoard(board.getBoard());
-        List<Integer> shuffle = new ArrayList<>(this.cells);
-        Collections.shuffle(shuffle);
-
-        if (numberOfMissingCells == 0) {
-            return puzzle;
-        }
-        else {
-            for (int i =0; i < 81; i ++) {
-                int cell = shuffle.get(i);
-                int row = cell / 9;
-                int column = cell % 9;
-
-                if (puzzle.getCell(row,column) == 0){
-                    continue;
-                }
-                int value = puzzle.getCell(row,column);
-                puzzle.setCell(row, column, 0);
-                int solution = solutionCounter(puzzle, validator);
-
-                if (solution >= 2) {
-                    puzzle.setCell(row, column, value);
-
-                }
-                else {
-                    SudokuBoard result = recursiveRemoveCells(puzzle, numberOfMissingCells - 1);
-                    if (result == null ){
-                        puzzle.setCell(row, column, value);
-                    }
-                    else{
-                        return result;
-                    }
-                }
-            }
-            return null;
-        }
-    }
-
     SudokuBoard iterativeRemoveCells(SudokuBoard board, int numberOfMissingCells){
         // Iterative method, only passes through a max 81 times (while index is < cells.size)
         // randomly gets a cell and checks whether it still results in a unique solution.
