@@ -39,7 +39,7 @@ public class SudokuSolver {
          for (int i =0; i <81; i++){
              int row = i / 9;
              int column = i % 9;
-             System.out.println("Enter number for box (" + row + "," + column + "): (Enter 0 for empty)");
+             System.out.println("Enter number for box (" + (row +1) + "," + (column +1) + "): (Enter 0 for empty)");
              int value = scanner.nextInt();
              board.setCell(row,column,value);
 
@@ -51,10 +51,17 @@ public class SudokuSolver {
     void solveSudoku(){
          SudokuBoard board = enterBoard();
          SudokuGenerator generator = new SudokuGenerator();
-         CellValidator validator = new CellValidator();
-         int solutions = generator.solutionCounter(board, validator);
+         CellValidator cellValidator = new CellValidator();
+         BoardValidator boardValidator = new BoardValidator();
+         int solutions = generator.solutionCounter(board, cellValidator);
          if (solutions > 1){
              System.out.println("Not uniquely solvable");
+         }
+         if (!boardValidator.isValidPartialBoard(board.getBoard())){
+             System.out.println("Board is unsolvable");
+         }
+         if (boardValidator.isValidBoard(board.getBoard())){
+             System.out.println("Already Solved.");
          }
          else{
              SudokuBoard solution = solve(board);
