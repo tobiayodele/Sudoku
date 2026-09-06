@@ -190,6 +190,5 @@ To access the experiment and raw experimental data and generated tables and grap
 
 ## Author
 **Tobi Ayodele**
-happy to have satisfied my sudoku itch.
 [github.com/tobiayodele](https://github.com/tobiayodele)
 
