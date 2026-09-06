@@ -39,4 +39,17 @@ public class SolutionCounterTests {
         int solutions = generator.solutionCounter(board,new CellValidator());
         assertEquals(2,solutions);
     }
+
+    @Test
+    public void notValidSudoku(){
+        SudokuGenerator generator= new SudokuGenerator();
+        SudokuBoard board = generator.generate();
+        board = generator.iterativeRemoveCells(board,50);
+
+        //now invalid
+        board.setCell(0,0,4);
+        board.setCell(0,1,4);
+
+        assertEquals(0,generator.solutionCounter(board,new CellValidator()));
+    }
 }

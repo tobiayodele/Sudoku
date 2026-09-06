@@ -89,6 +89,10 @@ public class SudokuGenerator {
 
      int solutionCounter(SudokuBoard puzzle, CellValidator validator){
         //find the next empty cell
+         BoardValidator boardValidator = new BoardValidator();
+         if(!boardValidator.isValidPartialBoard(puzzle.getBoard())){
+             return 0;
+         }
         for (int row =0; row <9 ; row ++){
             for (int column = 0; column<9; column ++){
                 if (puzzle.isEmpty(row,column)){
