@@ -3,7 +3,7 @@ package sudoku;
 import java.util.HashSet;
 
 public class BoardValidator {
-    // test class honestly why is this even here? pls delete tobi
+
     public boolean isValidBoard(int[][]board){
         if (!isFullSudoku(board)){
             return false;
@@ -13,6 +13,25 @@ public class BoardValidator {
             if (!isValidRow(board[i])){
                 return false;
            }
+            if (!isValidColumn(board, i)){
+                return false;
+            }
+        }
+
+        for (int row = 0; row <9; row += 3){
+            for (int column =0; column < 9; column += 3){
+                if(!isValidBox(board, row, column)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public boolean isValidPartialBoard(int[][]board){
+        for(int i = 0; i <9; i++){
+            if (!isValidRow(board[i])){
+                return false;
+            }
             if (!isValidColumn(board, i)){
                 return false;
             }
@@ -46,7 +65,9 @@ public class BoardValidator {
             if (seen.contains(i)){
                 return false;
             }
-            seen.add(i);
+            if (i !=0) {
+                seen.add(i);
+            }
         }
         return true;
     }
@@ -58,7 +79,9 @@ public class BoardValidator {
             if (seen.contains(value)){
                 return false;
             }
-            seen.add(value);
+            if (value != 0) {
+                seen.add(value);
+            }
         }
         return true;
     }
@@ -72,7 +95,9 @@ public class BoardValidator {
                 if(seen.contains(value)){
                     return false;
                 }
-                seen.add(value);
+                if(value !=0) {
+                    seen.add(value);
+                }
             }
         }
         return true;
