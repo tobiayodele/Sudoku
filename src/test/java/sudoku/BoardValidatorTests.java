@@ -81,4 +81,27 @@ public class BoardValidatorTests {
         assertFalse(validator.isValidBoard(testInvalidBoardColumn));
     }
 
+    @Test
+    public void testSolvableIncompleteBoard(){
+        SudokuGenerator generator = new SudokuGenerator();
+        BoardValidator validator = new BoardValidator();
+        SudokuBoard board = generator.generate();
+        board = generator.iterativeRemoveCells(board, 50);
+        assertTrue(validator.isValidPartialBoard(board.getBoard()));
+    }
+
+    @Test
+    public void testUnsolvableIncompleteBoard(){
+        SudokuGenerator generator = new SudokuGenerator();
+        BoardValidator validator = new BoardValidator();
+        SudokuBoard board = generator.generate();
+        //solvable and unique
+        board = generator.iterativeRemoveCells(board, 50);
+        //duplicate 4s in row 0 so unsolvable
+        board.setCell(0,0,4);
+        board.setCell(0,1,4);
+
+        assertFalse(validator.isValidPartialBoard(board.getBoard()));
+    }
+
 }
