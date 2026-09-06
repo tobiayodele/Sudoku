@@ -11,7 +11,8 @@ import org.junit.runners.Suite;
         ValidateGuessTests.class,
         BoardValidatorTests.class,
         RemovalTests.class,
-        SudokuGameTests.class
+        SudokuGameTests.class,
+        SudokuSolverTests.class
 })
 
 
