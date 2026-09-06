@@ -15,8 +15,8 @@ Java-based Sudoku generator, solver, validator and command-line playable game.
 - [Usage](#usage)
   - [Play Sudoku](#play-sudoku)
   - [Solve Sudoku](#solve-sudoku)
-- [Tests](tests)
-- [Experiment](experiment)
+- [Tests](#tests)
+- [Experiment](#experiment)
 - [License](#license)
 - [Author](#author)
 
