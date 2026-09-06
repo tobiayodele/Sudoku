@@ -27,4 +27,16 @@ public class SolutionCounterTests {
     // removed multiple solutions check. generator.iterativeRemoveCells will always return a unique solution
     // or null.
 
+    @Test
+    public void emptySudoku(){
+        // an empty sudoku will never be uniquely solvable
+        // (it literally contains every possible board as solutions)
+
+        //create an empty sudoku board
+        SudokuGenerator generator = new SudokuGenerator();
+        SudokuBoard board = new SudokuBoard();
+
+        int solutions = generator.solutionCounter(board,new CellValidator());
+        assertEquals(2,solutions);
+    }
 }
