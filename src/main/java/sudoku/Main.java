@@ -13,7 +13,7 @@ public class Main {
                 "Choose an option:");
         String mode;
         while (true){
-
+            // validity check
             mode = scanner.nextLine();
             if (!(mode.equals("1") || mode.equals("2") || mode.equals("3"))){
                 System.out.println("Invalid Input");
