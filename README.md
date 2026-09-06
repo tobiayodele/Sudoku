@@ -33,7 +33,7 @@ Java-based Sudoku generator, solver, validator and command-line playable game.
   - Greedy/Iterative cell removal method to remove a given number of cells.
   - Uniqueness checks for puzzles using a recursive solution counter.
 
-  > See [experiments](experiment) for more detail on cell removal methods.
+  > See [experiment](#experiment) for more detail on cell removal methods.
  
 
 ### Difficulty Levels
@@ -173,7 +173,7 @@ To run these tests use the command:
 
 ---
 
-## Experiments
+## Experiment
 The ```experiments``` branch contains an experiment comparing three different cell-removal methods in terms of the runtime to generate a unique Sudoku puzzle as the number of missing cells increases.
 
 The Greedy/Iterative method was chosen as the cell-removal method for the Sudoku generator as it performed the best within the 40-60 missing cell range which is the range which is used in the generator. 
