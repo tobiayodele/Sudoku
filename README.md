@@ -83,7 +83,7 @@ Sudoku/
 ---
 
 # Prerequisites
-- Java 26 or later
+- Java 21 or later
 - Git
 
 
