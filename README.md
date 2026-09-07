@@ -117,8 +117,9 @@ Clone this repository.
 git clone https://github.com/tobiayodele/Sudoku.git
 cd Sudoku
 ```
-Build the project.
+Ensure that the Maven wrapper is executable and then build the project.
 ```bash
+chmod +x mvnw
 ./mvnw clean package
 
 ```
