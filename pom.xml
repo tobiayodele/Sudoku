@@ -6,7 +6,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <properties>
-        <maven.compiler.release>26</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
     </properties>
 
     <groupId>com.github.tobiayodele</groupId>
