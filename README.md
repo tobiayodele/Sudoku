@@ -80,7 +80,7 @@ Sudoku/
 ---
 
 # Prerequisites
-- Java 26 or later
+- Java 21 or later
 - Python 3
   - `pandas`
   - `matplotlib`
